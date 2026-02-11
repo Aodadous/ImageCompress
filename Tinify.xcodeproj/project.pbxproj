@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		863CD06F2F3C8C6F00076FEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 863CD0552F3C8C6E00076FEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 863CD05C2F3C8C6E00076FEA;
+			remoteInfo = Tinify;
+		};
+		863CD0792F3C8C6F00076FEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 863CD0552F3C8C6E00076FEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 863CD05C2F3C8C6E00076FEA;
+			remoteInfo = Tinify;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		863CD05D2F3C8C6E00076FEA /* Tinify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinify.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		863CD06E2F3C8C6F00076FEA /* TinifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		863CD0782F3C8C6F00076FEA /* TinifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		863CD05F2F3C8C6E00076FEA /* Tinify */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Tinify;
+			sourceTree = "<group>";
+		};
+		863CD0712F3C8C6F00076FEA /* TinifyTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TinifyTests;
+			sourceTree = "<group>";
+		};
+		863CD07B2F3C8C6F00076FEA /* TinifyUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TinifyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		863CD05A2F3C8C6E00076FEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		863CD06B2F3C8C6F00076FEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		863CD0752F3C8C6F00076FEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		863CD0542F3C8C6E00076FEA = {
+			isa = PBXGroup;
+			children = (
+				863CD05F2F3C8C6E00076FEA /* Tinify */,
+				863CD0712F3C8C6F00076FEA /* TinifyTests */,
+				863CD07B2F3C8C6F00076FEA /* TinifyUITests */,
+				863CD05E2F3C8C6E00076FEA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		863CD05E2F3C8C6E00076FEA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				863CD05D2F3C8C6E00076FEA /* Tinify.app */,
+				863CD06E2F3C8C6F00076FEA /* TinifyTests.xctest */,
+				863CD0782F3C8C6F00076FEA /* TinifyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		863CD05C2F3C8C6E00076FEA /* Tinify */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 863CD0822F3C8C6F00076FEA /* Build configuration list for PBXNativeTarget "Tinify" */;
+			buildPhases = (
+				863CD0592F3C8C6E00076FEA /* Sources */,
+				863CD05A2F3C8C6E00076FEA /* Frameworks */,
+				863CD05B2F3C8C6E00076FEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				863CD05F2F3C8C6E00076FEA /* Tinify */,
+			);
+			name = Tinify;
+			packageProductDependencies = (
+			);
+			productName = Tinify;
+			productReference = 863CD05D2F3C8C6E00076FEA /* Tinify.app */;
+			productType = "com.apple.product-type.application";
+		};
+		863CD06D2F3C8C6F00076FEA /* TinifyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 863CD0852F3C8C6F00076FEA /* Build configuration list for PBXNativeTarget "TinifyTests" */;
+			buildPhases = (
+				863CD06A2F3C8C6F00076FEA /* Sources */,
+				863CD06B2F3C8C6F00076FEA /* Frameworks */,
+				863CD06C2F3C8C6F00076FEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				863CD0702F3C8C6F00076FEA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				863CD0712F3C8C6F00076FEA /* TinifyTests */,
+			);
+			name = TinifyTests;
+			packageProductDependencies = (
+			);
+			productName = TinifyTests;
+			productReference = 863CD06E2F3C8C6F00076FEA /* TinifyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		863CD0772F3C8C6F00076FEA /* TinifyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 863CD0882F3C8C6F00076FEA /* Build configuration list for PBXNativeTarget "TinifyUITests" */;
+			buildPhases = (
+				863CD0742F3C8C6F00076FEA /* Sources */,
+				863CD0752F3C8C6F00076FEA /* Frameworks */,
+				863CD0762F3C8C6F00076FEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				863CD07A2F3C8C6F00076FEA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				863CD07B2F3C8C6F00076FEA /* TinifyUITests */,
+			);
+			name = TinifyUITests;
+			packageProductDependencies = (
+			);
+			productName = TinifyUITests;
+			productReference = 863CD0782F3C8C6F00076FEA /* TinifyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		863CD0552F3C8C6E00076FEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					863CD05C2F3C8C6E00076FEA = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					863CD06D2F3C8C6F00076FEA = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 863CD05C2F3C8C6E00076FEA;
+					};
+					863CD0772F3C8C6F00076FEA = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 863CD05C2F3C8C6E00076FEA;
+					};
+				};
+			};
+			buildConfigurationList = 863CD0582F3C8C6E00076FEA /* Build configuration list for PBXProject "Tinify" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 863CD0542F3C8C6E00076FEA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 863CD05E2F3C8C6E00076FEA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				863CD05C2F3C8C6E00076FEA /* Tinify */,
+				863CD06D2F3C8C6F00076FEA /* TinifyTests */,
+				863CD0772F3C8C6F00076FEA /* TinifyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		863CD05B2F3C8C6E00076FEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		863CD06C2F3C8C6F00076FEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		863CD0762F3C8C6F00076FEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		863CD0592F3C8C6E00076FEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		863CD06A2F3C8C6F00076FEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		863CD0742F3C8C6F00076FEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		863CD0702F3C8C6F00076FEA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 863CD05C2F3C8C6E00076FEA /* Tinify */;
+			targetProxy = 863CD06F2F3C8C6F00076FEA /* PBXContainerItemProxy */;
+		};
+		863CD07A2F3C8C6F00076FEA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 863CD05C2F3C8C6E00076FEA /* Tinify */;
+			targetProxy = 863CD0792F3C8C6F00076FEA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		863CD0802F3C8C6F00076FEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		863CD0812F3C8C6F00076FEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		863CD0832F3C8C6F00076FEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Tinify/Tinify.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tinify/Preview Content\"";
+				DEVELOPMENT_TEAM = FPL8625K58;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devtool.tinify.Tinify;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		863CD0842F3C8C6F00076FEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Tinify/Tinify.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tinify/Preview Content\"";
+				DEVELOPMENT_TEAM = FPL8625K58;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devtool.tinify.Tinify;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		863CD0862F3C8C6F00076FEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FPL8625K58;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devtool.tinify.TinifyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tinify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tinify";
+			};
+			name = Debug;
+		};
+		863CD0872F3C8C6F00076FEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FPL8625K58;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devtool.tinify.TinifyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tinify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tinify";
+			};
+			name = Release;
+		};
+		863CD0892F3C8C6F00076FEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FPL8625K58;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devtool.tinify.TinifyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Tinify;
+			};
+			name = Debug;
+		};
+		863CD08A2F3C8C6F00076FEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FPL8625K58;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devtool.tinify.TinifyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Tinify;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		863CD0582F3C8C6E00076FEA /* Build configuration list for PBXProject "Tinify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				863CD0802F3C8C6F00076FEA /* Debug */,
+				863CD0812F3C8C6F00076FEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		863CD0822F3C8C6F00076FEA /* Build configuration list for PBXNativeTarget "Tinify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				863CD0832F3C8C6F00076FEA /* Debug */,
+				863CD0842F3C8C6F00076FEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		863CD0852F3C8C6F00076FEA /* Build configuration list for PBXNativeTarget "TinifyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				863CD0862F3C8C6F00076FEA /* Debug */,
+				863CD0872F3C8C6F00076FEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		863CD0882F3C8C6F00076FEA /* Build configuration list for PBXNativeTarget "TinifyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				863CD0892F3C8C6F00076FEA /* Debug */,
+				863CD08A2F3C8C6F00076FEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 863CD0552F3C8C6E00076FEA /* Project object */;
+}
