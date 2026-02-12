@@ -3,6 +3,7 @@ import AppKit
 
 struct ContentView: View {
     @StateObject private var viewModel = CompressorViewModel()
+    @State private var showSettings = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -127,9 +128,20 @@ struct ContentView: View {
             
             // File List
             VStack(alignment: .leading) {
-                HStack {
+                HStack(spacing: 8) {
                     Text("文件列表 (\(viewModel.files.count))")
                         .font(.headline)
+                    
+                    Button(action: {
+                        viewModel.scanFiles()
+                    }) {
+                        Image(systemName: "arrow.clockwise.circle")
+                            .font(.title3)
+                            .foregroundColor(.secondary)
+                    }
+                    .buttonStyle(.plain)
+                    .help("重新扫描文件")
+                    
                     Spacer()
                 }
                 .padding(.horizontal)
@@ -185,19 +197,116 @@ struct ContentView: View {
             }
             
             // Action Button
-            Button(action: viewModel.startCompression) {
-                Text(viewModel.isCompressing ? "正在压缩..." : "开始压缩")
-                    .font(.headline)
-                    .frame(width: 150, height: 30)
+            HStack(spacing: 12) {
+                // Settings Button
+                Button(action: {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        showSettings = true
+                    }
+                }) {
+                    Image(systemName: "gear")
+                        .font(.headline)
+                        .frame(width: 20, height: 20)
+                }
+                .buttonStyle(.bordered)
+                
+                Spacer()
+                
+                Button(action: viewModel.startCompression) {
+                    Text(viewModel.isCompressing ? "正在压缩..." : "开始压缩")
+                        .font(.headline)
+                        .frame(width: 150, height: 30)
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(viewModel.isCompressing || viewModel.files.isEmpty || viewModel.outputFolderURL == nil)
+                
+                Spacer()
+                
+                Color.clear
+                    .frame(width: 44, height: 32)
             }
-            .buttonStyle(.borderedProminent)
-            .disabled(viewModel.isCompressing || viewModel.files.isEmpty || viewModel.outputFolderURL == nil)
             .padding(.bottom)
+            .padding(.horizontal)
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text("提示"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("确定")))
             }
         }
         .frame(minWidth: 700, minHeight: 600)
+        .overlay {
+            if showSettings {
+                ZStack {
+                    // Background dimming and tap to dismiss
+                    Color.black.opacity(0.3)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                showSettings = false
+                            }
+                        }
+                    
+                    // Settings Content
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("设置")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 10)
+                        
+                        //Divider()
+                          //  .padding(.horizontal, -10)
+                        
+                        VStack(alignment: .leading, spacing: 20) {
+                            Toggle("压缩完清理输入目录", isOn: $viewModel.cleanInputAfterCompression)
+                                .toggleStyle(.switch)
+                                .font(.body)
+                            
+                            VStack(alignment: .leading, spacing: 10) {
+                                Toggle("重命名", isOn: $viewModel.renameEnabled)
+                                    .toggleStyle(.switch)
+                                    .font(.body)
+                                
+                                if viewModel.renameEnabled {
+                                    HStack {
+                                        Text("前缀:")
+                                            .foregroundColor(.secondary)
+                                        TextField("icon", text: $viewModel.renamePrefix)
+                                            .textFieldStyle(.plain)
+                                            .padding(6)
+                                            .background(Color(NSColor.controlBackgroundColor))
+                                            .cornerRadius(6)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 6)
+                                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                            )
+                                            .frame(width: 150)
+                                    }
+                                    .padding(.leading, 24)
+                                    .transition(.opacity.combined(with: .move(edge: .top)))
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 5)
+                        
+                        Spacer()
+                    }
+                    .padding(20)
+                    .frame(width: 320, height: 260)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color(NSColor.windowBackgroundColor))
+                            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.gray.opacity(0.1), lineWidth: 1)
+                    )
+                    .onTapGesture {
+                        // Prevent tap on content from closing
+                    }
+                }
+                .transition(.opacity)
+            }
+        }
         .onAppear {
             viewModel.restoreFolders()
             viewModel.refreshCompressionCount()

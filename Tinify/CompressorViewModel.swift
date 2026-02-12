@@ -24,6 +24,9 @@ class CompressorViewModel: ObservableObject {
     @AppStorage("tinify_api_key") var apiKey: String = ""
     @AppStorage("input_folder_path") var inputFolderPath: String = ""
     @AppStorage("output_folder_path") var outputFolderPath: String = ""
+    @AppStorage("clean_input_after_compression") var cleanInputAfterCompression: Bool = false
+    @AppStorage("rename_enabled") var renameEnabled: Bool = false
+    @AppStorage("rename_prefix") var renamePrefix: String = "icon"
     
     @Published var isCompressing: Bool = false
     @Published var compressionCount: Int? = nil
@@ -124,6 +127,20 @@ class CompressorViewModel: ObservableObject {
         isCompressing = true
         
         Task {
+            // Handle renaming first if enabled
+            if renameEnabled {
+                do {
+                    try await renameInputFiles()
+                    // Re-scan files after rename
+                    scanFiles() 
+                } catch {
+                    alertMessage = "重命名失败: \(error.localizedDescription)"
+                    showAlert = true
+                    isCompressing = false
+                    return
+                }
+            }
+            
             for index in files.indices {
                 if files[index].status == .success { continue } // Skip already compressed
                 
@@ -186,8 +203,69 @@ class CompressorViewModel: ObservableObject {
                     files[index].status = .error(error.localizedDescription)
                 }
             }
+            
+            if cleanInputAfterCompression {
+                do {
+                    try await cleanInputFiles()
+                    await MainActor.run {
+                        // self.files = [] // Keep files in list
+                        // No alert
+                    }
+                } catch {
+                    await MainActor.run {
+                        self.alertMessage = "清理文件失败: \(error.localizedDescription)"
+                        self.showAlert = true
+                    }
+                }
+            } else {
+                await MainActor.run {
+                     // Just finish
+                }
+            }
+            
             isCompressing = false
         }
+    }
+    
+    private func renameInputFiles() async throws {
+        guard let inputURL = inputFolderURL else { return }
+        let fileManager = FileManager.default
+        let prefix = renamePrefix.isEmpty ? "icon" : renamePrefix
+        
+        let options: FileManager.DirectoryEnumerationOptions = [.skipsHiddenFiles]
+        
+        // Collect URLs first
+        var fileURLs: [URL] = []
+        if let enumerator = fileManager.enumerator(at: inputURL, includingPropertiesForKeys: nil, options: options) {
+            for case let fileURL as URL in enumerator {
+                if isImageFile(fileURL) {
+                    fileURLs.append(fileURL)
+                }
+            }
+        }
+        
+        // Sort
+        fileURLs.sort { $0.lastPathComponent < $1.lastPathComponent }
+        
+        let timestamp = Int(Date().timeIntervalSince1970)
+        
+        for (index, fileURL) in fileURLs.enumerated() {
+            let ext = fileURL.pathExtension
+            let newName = "\(prefix)-\(timestamp)-\(index + 1).\(ext)"
+            let newURL = fileURL.deletingLastPathComponent().appendingPathComponent(newName)
+            
+            try fileManager.moveItem(at: fileURL, to: newURL)
+        }
+    }
+    
+    private func cleanInputFiles() async throws {
+         guard let inputURL = inputFolderURL else { return }
+         let fileManager = FileManager.default
+         
+         let contents = try fileManager.contentsOfDirectory(at: inputURL, includingPropertiesForKeys: nil)
+         for url in contents {
+             try fileManager.trashItem(at: url, resultingItemURL: nil)
+         }
     }
     
     func refreshCompressionCount() {
