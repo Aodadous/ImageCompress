@@ -149,6 +149,22 @@ class CompressorViewModel: ObservableObject {
                     
                     let destinationURL = outputURL.appendingPathComponent(relativePath)
                     
+                    // Check if file already exists
+                    if FileManager.default.fileExists(atPath: destinationURL.path) {
+                        files[index].status = .success
+                        // Try to calculate ratio if possible
+                        if let attr = try? FileManager.default.attributesOfItem(atPath: destinationURL.path),
+                           let compressedSize = attr[.size] as? Int64,
+                           let originalAttr = try? FileManager.default.attributesOfItem(atPath: fileURL.path),
+                           let originalSize = originalAttr[.size] as? Int64,
+                           originalSize > 0 {
+                            files[index].compressionRatio = 1.0 - (Double(compressedSize) / Double(originalSize))
+                        } else {
+                            files[index].compressionRatio = 0
+                        }
+                        continue // Skip compression
+                    }
+                    
                     try FileManager.default.createDirectory(at: destinationURL.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
                     
                     let (data, originalSize, compressedSize, count) = try await TinifyService.shared.compressImage(apiKey: apiKey, fileURL: fileURL)

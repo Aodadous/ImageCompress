@@ -160,9 +160,15 @@ struct ContentView: View {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.green)
                                 if let ratio = file.compressionRatio {
-                                    Text(String(format: "-%.1f%%", ratio * 100))
-                                        .font(.caption)
-                                        .bold()
+                                    if ratio == 0 {
+                                        Text("已存在")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                    } else {
+                                        Text(String(format: "-%.1f%%", ratio * 100))
+                                            .font(.caption)
+                                            .bold()
+                                    }
                                 }
                             }
                         case .error(let msg):
