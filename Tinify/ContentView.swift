@@ -135,11 +135,8 @@ struct ContentView: View {
                     Button(action: {
                         viewModel.scanFiles()
                     }) {
-                        Image(systemName: "arrow.clockwise.circle")
-                            .font(.title3)
-                            .foregroundColor(.secondary)
+                        Image(systemName: "arrow.clockwise")
                     }
-                    .buttonStyle(.plain)
                     .help("重新扫描文件")
                     
                     Spacer()

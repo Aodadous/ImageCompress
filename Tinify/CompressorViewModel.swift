@@ -124,6 +124,13 @@ class CompressorViewModel: ObservableObject {
         }
         guard let inputURL = inputFolderURL, let outputURL = outputFolderURL else { return }
         
+        // Check if input and output directories are the same
+        if inputURL.path == outputURL.path {
+            alertMessage = "输入目录和输出目录不能相同，请选择不同的输出目录。"
+            showAlert = true
+            return
+        }
+        
         isCompressing = true
         
         Task {
