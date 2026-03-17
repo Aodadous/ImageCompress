@@ -7,55 +7,78 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            // Header
-            Text("Tinify 图片压缩工具")
-                .font(.title)
-                .padding(.top)
-            
-            // API Key
+            // Header with mode switcher
             HStack {
-                Text("API Key:")
-                SecureField("输入 Tinify API Key", text: $viewModel.apiKey)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .onSubmit {
-                        viewModel.refreshCompressionCount()
+                Picker("", selection: Binding(
+                    get: { viewModel.compressionMode },
+                    set: { viewModel.compressionMode = $0 }
+                )) {
+                    ForEach(CompressionMode.allCases, id: \.self) { mode in
+                        Text(mode.rawValue).tag(mode)
                     }
-                
-                Button(action: {
-                    viewModel.refreshCompressionCount()
-                }) {
-                    Image(systemName: "arrow.clockwise")
                 }
-                .help("刷新使用量")
+                .pickerStyle(.segmented)
+                .frame(width: 160)
+                
+                Spacer()
+                
+                Text("图片压缩工具")
+                    .font(.title)
+                
+                Spacer()
+                
+                Color.clear
+                    .frame(width: 160, height: 1)
             }
+            .padding(.top)
             .padding(.horizontal)
             
-            // Usage Info
-            if let count = viewModel.compressionCount {
+            // API Key (only for Tinify mode)
+            if viewModel.compressionMode == .tinify {
                 HStack {
-                    Text("本月已用: \(count)")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    Text("API Key:")
+                    SecureField("输入 Tinify API Key", text: $viewModel.apiKey)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .onSubmit {
+                            viewModel.refreshCompressionCount()
+                        }
                     
-                    Text("|")
-                        .foregroundColor(.gray)
-                    
-                    let remaining = max(0, 500 - count)
-                    Text("免费额度剩余: \(remaining)")
-                        .font(.caption)
-                        .foregroundColor(remaining < 50 ? .orange : .green)
-                    
-                    Spacer()
+                    Button(action: {
+                        viewModel.refreshCompressionCount()
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                    .help("刷新使用量")
                 }
                 .padding(.horizontal)
-            } else if !viewModel.apiKey.isEmpty {
-                 HStack {
-                    Text("正在获取使用量...")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Spacer()
+                
+                // Usage Info
+                if let count = viewModel.compressionCount {
+                    HStack {
+                        Text("本月已用: \(count)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        Text("|")
+                            .foregroundColor(.gray)
+                        
+                        let remaining = max(0, 500 - count)
+                        Text("免费额度剩余: \(remaining)")
+                            .font(.caption)
+                            .foregroundColor(remaining < 50 ? .orange : .green)
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                } else if !viewModel.apiKey.isEmpty {
+                    HStack {
+                        Text("正在获取使用量...")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
             }
             
             // Folder Selection
@@ -306,7 +329,9 @@ struct ContentView: View {
         }
         .onAppear {
             viewModel.restoreFolders()
-            viewModel.refreshCompressionCount()
+            if viewModel.compressionMode == .tinify {
+                viewModel.refreshCompressionCount()
+            }
         }
     }
     

@@ -8,6 +8,11 @@ enum CompressionStatus: Equatable {
     case error(String)
 }
 
+enum CompressionMode: String, CaseIterable {
+    case tinify = "Tinify算法"
+    case local = "本地算法"
+}
+
 struct ImageFile: Identifiable {
     let id = UUID()
     let url: URL
@@ -27,6 +32,12 @@ class CompressorViewModel: ObservableObject {
     @AppStorage("clean_input_after_compression") var cleanInputAfterCompression: Bool = false
     @AppStorage("rename_enabled") var renameEnabled: Bool = false
     @AppStorage("rename_prefix") var renamePrefix: String = "icon"
+    @AppStorage("compression_mode") var compressionModeRaw: String = CompressionMode.local.rawValue
+    
+    var compressionMode: CompressionMode {
+        get { CompressionMode(rawValue: compressionModeRaw) ?? .local }
+        set { compressionModeRaw = newValue.rawValue }
+    }
     
     @Published var isCompressing: Bool = false
     @Published var compressionCount: Int? = nil
@@ -117,14 +128,15 @@ class CompressorViewModel: ObservableObject {
     }
     
     func startCompression() {
-        guard !apiKey.isEmpty else {
-            alertMessage = "请输入 API Key"
-            showAlert = true
-            return 
+        if compressionMode == .tinify {
+            guard !apiKey.isEmpty else {
+                alertMessage = "请输入 API Key"
+                showAlert = true
+                return
+            }
         }
         guard let inputURL = inputFolderURL, let outputURL = outputFolderURL else { return }
         
-        // Check if input and output directories are the same
         if inputURL.path == outputURL.path {
             alertMessage = "输入目录和输出目录不能相同，请选择不同的输出目录。"
             showAlert = true
@@ -134,12 +146,10 @@ class CompressorViewModel: ObservableObject {
         isCompressing = true
         
         Task {
-            // Handle renaming first if enabled
             if renameEnabled {
                 do {
                     try await renameInputFiles()
-                    // Re-scan files after rename
-                    scanFiles() 
+                    scanFiles()
                 } catch {
                     alertMessage = "重命名失败: \(error.localizedDescription)"
                     showAlert = true
@@ -149,9 +159,7 @@ class CompressorViewModel: ObservableObject {
             }
             
             for index in files.indices {
-                if files[index].status == .success { continue } // Skip already compressed
-                
-                // Stop if user cleared files or something changed (simplified check)
+                if files[index].status == .success { continue }
                 if index >= files.count { break }
                 
                 files[index].status = .compressing
@@ -159,7 +167,6 @@ class CompressorViewModel: ObservableObject {
                 do {
                     let fileURL = files[index].url
                     
-                    // Calculate relative path
                     let inputPath = inputURL.path
                     let filePath = fileURL.path
                     
@@ -173,10 +180,8 @@ class CompressorViewModel: ObservableObject {
                     
                     let destinationURL = outputURL.appendingPathComponent(relativePath)
                     
-                    // Check if file already exists
                     if FileManager.default.fileExists(atPath: destinationURL.path) {
                         files[index].status = .success
-                        // Try to calculate ratio if possible
                         if let attr = try? FileManager.default.attributesOfItem(atPath: destinationURL.path),
                            let compressedSize = attr[.size] as? Int64,
                            let originalAttr = try? FileManager.default.attributesOfItem(atPath: fileURL.path),
@@ -186,12 +191,30 @@ class CompressorViewModel: ObservableObject {
                         } else {
                             files[index].compressionRatio = 0
                         }
-                        continue // Skip compression
+                        continue
                     }
                     
                     try FileManager.default.createDirectory(at: destinationURL.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
                     
-                    let (data, originalSize, compressedSize, count) = try await TinifyService.shared.compressImage(apiKey: apiKey, fileURL: fileURL)
+                    let data: Data
+                    let originalSize: Int
+                    let compressedSize: Int
+                    
+                    switch compressionMode {
+                    case .tinify:
+                        let result = try await TinifyService.shared.compressImage(apiKey: apiKey, fileURL: fileURL)
+                        data = result.data
+                        originalSize = result.originalSize
+                        compressedSize = result.compressedSize
+                        if let newCount = result.compressionCount {
+                            self.compressionCount = newCount
+                        }
+                    case .local:
+                        let result = try await LocalCompressor.shared.compressImage(fileURL: fileURL)
+                        data = result.data
+                        originalSize = result.originalSize
+                        compressedSize = result.compressedSize
+                    }
                     
                     try data.write(to: destinationURL)
                     
@@ -202,10 +225,6 @@ class CompressorViewModel: ObservableObject {
                         files[index].compressionRatio = 0
                     }
                     
-                    if let newCount = count {
-                        self.compressionCount = newCount
-                    }
-                    
                 } catch {
                     files[index].status = .error(error.localizedDescription)
                 }
@@ -214,19 +233,9 @@ class CompressorViewModel: ObservableObject {
             if cleanInputAfterCompression {
                 do {
                     try await cleanInputFiles()
-                    await MainActor.run {
-                        // self.files = [] // Keep files in list
-                        // No alert
-                    }
                 } catch {
-                    await MainActor.run {
-                        self.alertMessage = "清理文件失败: \(error.localizedDescription)"
-                        self.showAlert = true
-                    }
-                }
-            } else {
-                await MainActor.run {
-                     // Just finish
+                    self.alertMessage = "清理文件失败: \(error.localizedDescription)"
+                    self.showAlert = true
                 }
             }
             
