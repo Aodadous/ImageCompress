@@ -1,3 +1,5 @@
+<img width="900" height="628" alt="image" src="https://github.com/user-attachments/assets/1291bb8e-0969-4660-b9bd-c223e743b2a3" />
+
 # Tinify - 图片压缩工具
 
 一款 macOS 原生桌面图片压缩工具，支持 **Tinify API** 和 **本地压缩** 双模式，可批量压缩 PNG / JPG / WebP 图片。
